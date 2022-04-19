@@ -1,0 +1,9 @@
+seaborn==0.11.2
+matplotlib==3.5.1
+plotly==5.7.0
+numpy==1.22.3
+pandas==1.4.1
+xgboost==1.6.0
+scikit-learn==1.0.2
+tabulate==0.8.9
+kaleido==0.2.1
