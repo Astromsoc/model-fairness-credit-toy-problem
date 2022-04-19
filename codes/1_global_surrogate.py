@@ -19,7 +19,7 @@ from utils import *
 if __name__ == '__main__':
     
     # load datasets
-    labeled_df_raw = pd.read_csv(LABELED_DATA_PATH)
+    labeled_df_raw = pd.read_csv(LABELED_DATA_PATH).drop('Unnamed: 0', axis=1)
     # test_df_raw = pd.read_csv(UNLABELED_DATA_PATH)
 
     # get inputs & labels

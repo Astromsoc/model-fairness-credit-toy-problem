@@ -24,7 +24,7 @@ def get_test_roc_auc(model, folder, model_name, XX, yy, X, y):
     # plt.show()
     
 
-def anti_classification(attr, model, model_name, XX, yy, X, keep_prob=False):
+def anti_classification(attr, model, model_name, XX, yy, X, keep_prob=False, return_model=False):
     now_cols = [c for c in XX.columns if c != attr]
     XX_partial = dummify(XX[now_cols])
     model.fit(XX_partial, yy)
@@ -32,7 +32,10 @@ def anti_classification(attr, model, model_name, XX, yy, X, keep_prob=False):
     X['Risk_pred(protected=%s, model=%s)' % (attr, model_name)] = model.predict(X_partial)
     if keep_prob:
         X['Risk_prob(protected=%s, model=%s)' % (attr, model_name)] = model.predict_proba(X_partial)[:, 1]
-    return X
+    if return_model:
+        return X, model 
+    else:
+        return X
 
 
 def print_confusion_matrix(cm):
