@@ -1,5 +1,6 @@
 import os
 import math
+import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.metrics import plot_roc_curve, confusion_matrix
@@ -36,6 +37,10 @@ def anti_classification(attr, model, model_name, XX, yy, X, keep_prob=False, ret
         return X, model 
     else:
         return X
+
+
+def perturb_attr(row, attr, attr_list):
+    return np.random.choice([a for a in attr_list if a != row[attr]])
 
 
 def print_confusion_matrix(cm):
