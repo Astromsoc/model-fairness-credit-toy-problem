@@ -74,3 +74,20 @@ def seperate_by_attr(attr, attr_val, df, true_name, pred_name, attr_val2=None):
     else:
         limited = df[(df[attr] >= attr_val) & (df[attr] < attr_val2)]
     return print_confusion_matrix(confusion_matrix(limited[true_name], limited[pred_name], labels=['good', 'bad']))
+
+
+def boost_dataset(file_path):
+    new_file_path = file_path.replace('.csv', '_augmented.csv')
+    with open(new_file_path, 'w') as fw:
+        for line in open(file_path, 'r'):
+            # skip line
+            if 'Age' in line:
+                fw.write(line)
+                continue
+            if 'female' in line:
+                fw.write(line)
+                fw.write(line.replace('female', 'male'))
+            else:
+                fw.write(line)
+                fw.write(line.replace('male', 'female'))
+    return new_file_path
