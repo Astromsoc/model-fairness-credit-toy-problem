@@ -63,7 +63,7 @@ def get_threshold(attr, attr_val, df, prob_name, bar, attr_val2=None):
     if attr_val2 is None:
         limited = df[df[attr] == attr_val].sort_values(by=[prob_name], ascending=False)
     else:
-        limited = df[df[attr] >= attr_val][df[attr] < attr_val2].sort_values(by=[prob_name], ascending=False)
+        limited = df[(df[attr] >= attr_val) & (df[attr] < attr_val2)].sort_values(by=[prob_name], ascending=False)
     cut_off = math.ceil(len(limited) * bar)
     return limited.loc[limited.index[cut_off - 1]].at[prob_name]
 
@@ -72,5 +72,5 @@ def seperate_by_attr(attr, attr_val, df, true_name, pred_name, attr_val2=None):
     if attr_val2 is None:
         limited = df[df[attr] == attr_val]
     else:
-        limited = df[df[attr] >= attr_val][df[attr] < attr_val2]
+        limited = df[(df[attr] >= attr_val) & (df[attr] < attr_val2)]
     return print_confusion_matrix(confusion_matrix(limited[true_name], limited[pred_name], labels=['good', 'bad']))
