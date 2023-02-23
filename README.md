@@ -87,7 +87,7 @@ __Step 2__ model training and comparison
 
 Run:
 
-`bash streamline.py`
+`bash streamline.sh`
 
 in the root directory, which runs `./codes/1_global_surrogate.py`.
 
